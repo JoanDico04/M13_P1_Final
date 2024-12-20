@@ -1,0 +1,11 @@
+Esta en la base de dades la connexio que es diu ALUMNE. 
+
+Usuari: alumne 
+
+Contrasenya: alumne
+
+A l'hora de l'aplicació són els següents:
+
+Usuari: joan
+
+Contasenya: joan
