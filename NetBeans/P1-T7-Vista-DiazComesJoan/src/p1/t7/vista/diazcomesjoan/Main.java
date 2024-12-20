@@ -17,7 +17,7 @@ public class Main {
     
     public static void main(String[] args) {
      //TO DO all code...
-     
+    
      try {
             String nomClassePersistencia = args[0];
             // Intent de crear objecte per gestionar la connexió amb la BD
@@ -31,3 +31,4 @@ public class Main {
      l.setVisible(true);
     }
 }
+

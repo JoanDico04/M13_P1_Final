@@ -867,29 +867,27 @@ public class GestorBDEmpresaJdbc implements IGestorBD {
 }
 
     @Override
-    public Usuari ferLogin(String login) throws GestorBDException {
-        Usuari llUsuari = new Usuari(null, null, null);
-        System.out.println("login: "+login);
-        String query = "SELECT * FROM usuari WHERE login LIKE '"+login+"' ";
-        try {
-        
-        PreparedStatement stmt = conn.prepareStatement(query);
-        
-        //stmt.setString(1, login);
-        
-        ResultSet rs = stmt.executeQuery();
-        
-        if (rs.next()) {
-            System.out.println("user encontrado");
-            llUsuari = new Usuari(rs.getString("login"), rs.getString("password"), rs.getString("nom"));
-        }
-        
-        return llUsuari;
+  public Usuari ferLogin(String login) throws GestorBDException {
+    Usuari llUsuari = new Usuari(null, null, null);
+    System.out.println("login: " + login);
+    String query = "SELECT * FROM usuari WHERE login LIKE '" + login + "' ";
 
-    } catch (SQLException ex) {
-        throw new GestorBDException("Error al recuperar la lista de jugadores.", ex);
-    }
-    }
+        try (PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                System.out.println("User encontrado");
+                llUsuari = new Usuari(rs.getString("login"), rs.getString("password"), rs.getString("nom"));
+            } else {
+                throw new GestorBDException("Usuario no encontrado para el login: " + login);
+            }
+
+            return llUsuari;
+        } catch (SQLException ex) {
+            throw new GestorBDException("Error al recuperar el usuario.", ex);
+        }
+}
+
 
     @Override
     public List<Equip> trobarEquipPerCamp(String camp) throws GestorBDException {

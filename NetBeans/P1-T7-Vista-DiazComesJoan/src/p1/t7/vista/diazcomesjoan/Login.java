@@ -6,6 +6,7 @@ package p1.t7.vista.diazcomesjoan;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import p1.t6.interficiepersistencia.diazcomesjoan.GestorBDException;
 import p1.t6.interficiepersistencia.diazcomesjoan.IGestorBD;
 import static p1.t7.vista.diazcomesjoan.Main.gbd;
@@ -97,38 +98,35 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         try {
+     
+        Usuari usu = gbd.ferLogin(loginField.getText());
         
-        Usuari usu = new Usuari(null, null, null);
-        try {
-            // TODO add your handling code here:
-          usu = gbd.ferLogin(loginField.getText());
-            System.out.println("USER: "+usu.toString());
-        } catch (GestorBDException ex) {
-            ex.printStackTrace();
+     
+        if (usu == null) {
+            JOptionPane.showMessageDialog(this, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        
+        
+        String pass = passwField.getText();
+        if (pass.equals(usu.getUsuariPassw())) {
             
-            //System.out.println("USer "+ uwu.toString());
-            String pass =  passwField.getText();
-            System.out.println("Pass"+pass+" "+usu.getUsuariPassw());
-            System.out.println("Usuuu"+usu.toString());
-            if (pass.equals(usu.getUsuariPassw())){
-                try {
-                    GestioJugadors gj = new GestioJugadors();
-                    gj.setVisible(true);
-                    dispose();
-                } catch (GestorBDException ex) {
-                    // Crear finiestra errors
-                    ex.printStackTrace();
-                }
-            }
-            
-            // Connexio amb  base de dades amb capa de persistencia, paramatre nom interficie persistnecia
+            GestioJugadors gj = new GestioJugadors();
+            gj.setVisible(true);
+            dispose();
+        } else {
+           
+            JOptionPane.showMessageDialog(this, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (GestorBDException ex) {
+       
+        JOptionPane.showMessageDialog(this, "Error al iniciar sesión: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        ex.printStackTrace();
+    }
 
-        
-        
-        
+             
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
