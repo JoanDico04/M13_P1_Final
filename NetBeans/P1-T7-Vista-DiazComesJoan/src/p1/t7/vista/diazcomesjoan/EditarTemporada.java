@@ -112,7 +112,7 @@ public class EditarTemporada extends javax.swing.JFrame {
             temporada.getTemporadaId(),
            Integer.parseInt(nomField.getText())
         );
-        System.out.println("Temporada guardat"+gtem);
+        
         try {
             gbd.editarTemporada(gtem);
             gbd.confirmarCanvis();

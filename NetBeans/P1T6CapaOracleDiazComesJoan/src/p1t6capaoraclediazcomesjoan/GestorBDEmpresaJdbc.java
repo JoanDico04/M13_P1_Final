@@ -75,7 +75,7 @@ public class GestorBDEmpresaJdbc implements IGestorBD {
             String[] valors = new String[3];
             for (int i = 0; i < claus.length; i++) {
                 valors[i] = props.getProperty(claus[i]);
-                if (valors[i] == null || valors[i].isEmpty()) {
+            if (valors[i] == null || valors[i].isEmpty()) {
                     throw new GestorBDException("L'arxiu " + nomFitxer + " no troba la clau " + claus[i]);
                 }
             }
@@ -192,9 +192,7 @@ public class GestorBDEmpresaJdbc implements IGestorBD {
 
             // Validación final
             if (llTemporada.isEmpty()) {
-                System.out.println("No se encontraron temporadas en la base de datos.");
             } else {
-                System.out.println("Temporadas recuperados: " + llTemporada.size());
             }
 
             return llTemporada;
@@ -816,9 +814,9 @@ public class GestorBDEmpresaJdbc implements IGestorBD {
 
     // Validación final
     if (llJugador.isEmpty()) {
-        System.out.println("No se encontraron jugadores en la base de datos.");
+        
     } else {
-        System.out.println("Jugadores recuperados: " + llJugador.size());
+        
     }
 
     return llJugador;
@@ -858,9 +856,9 @@ public class GestorBDEmpresaJdbc implements IGestorBD {
 
     // Validación final
     if (llJugador.isEmpty()) {
-        System.out.println("No se encontraron jugadores en la base de datos.");
+        
     } else {
-        System.out.println("Jugadores recuperados: " + llJugador.size());
+        
     }
 
     return llJugador;
@@ -868,24 +866,32 @@ public class GestorBDEmpresaJdbc implements IGestorBD {
 
     @Override
   public Usuari ferLogin(String login) throws GestorBDException {
-    Usuari llUsuari = new Usuari(null, null, null);
-    System.out.println("login: " + login);
-    String query = "SELECT * FROM usuari WHERE login LIKE '" + login + "' ";
+    Usuari usuari = null; // Inicializamos a null
+    
 
-        try (PreparedStatement stmt = conn.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery()) {
+    String query = "SELECT * FROM usuari WHERE login = ? ";
 
-            if (rs.next()) {
-                System.out.println("User encontrado");
-                llUsuari = new Usuari(rs.getString("login"), rs.getString("password"), rs.getString("nom"));
-            } else {
-                throw new GestorBDException("Usuario no encontrado para el login: " + login);
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            // Sustitución del parámetro
+            stmt.setString(1, login);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                   
+                    usuari = new Usuari(
+                        rs.getString("login"),
+                        rs.getString("password"),
+                        rs.getString("nom")
+                    );
+                } else {
+                    throw new GestorBDException("Usuario no encontrado para el login: " + login);
+                }
             }
-
-            return llUsuari;
         } catch (SQLException ex) {
             throw new GestorBDException("Error al recuperar el usuario.", ex);
         }
+
+        return usuari;
 }
 
 
@@ -916,9 +922,9 @@ public class GestorBDEmpresaJdbc implements IGestorBD {
 
         // Validación final
         if (llEquip.isEmpty()) {
-            System.out.println("No se encontraron jugadores en la base de datos.");
+           
         } else {
-            System.out.println("Jugadores recuperados: " + llEquip.size());
+           
         }
 
         return llEquip;
@@ -951,9 +957,9 @@ public class GestorBDEmpresaJdbc implements IGestorBD {
 
             // Validación final
             if (llTemporada.isEmpty()) {
-                System.out.println("No se encontraron temporadas en la base de datos.");
+               
             } else {
-                System.out.println("Temporadas recuperados: " + llTemporada.size());
+                
             }
 
             return llTemporada;

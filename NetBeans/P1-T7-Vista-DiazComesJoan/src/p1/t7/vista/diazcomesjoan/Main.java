@@ -13,7 +13,7 @@ import p1.t6.interficiepersistencia.diazcomesjoan.IGestorBD;
  */
 public class Main {
     
-    protected static IGestorBD gbd = null;
+    public static IGestorBD gbd;
     
     public static void main(String[] args) {
      //TO DO all code...
@@ -21,14 +21,15 @@ public class Main {
      try {
             String nomClassePersistencia = args[0];
             // Intent de crear objecte per gestionar la connexió amb la BD
-            System.out.println("Intentant establir connexió...");
+            
             gbd = (IGestorBD) Class.forName(nomClassePersistencia).newInstance();
-            System.out.println("Connexió establerta");
+            
         } catch (Exception ex) {
-            System.out.println(ex.getMessage()+" "+ ex.getStackTrace());
+            
         }   
      Login l = new Login();
      l.setVisible(true);
     }
 }
+
 

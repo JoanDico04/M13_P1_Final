@@ -30,7 +30,7 @@ public class GestioTemporada extends javax.swing.JFrame {
         temporades = gbd.trobarTemporada();
         
         if (temporades == null || temporades.isEmpty()) {
-            System.out.println("No se encontraron equipos.");
+            
         } else {
             omplirTaula();
         }
@@ -195,7 +195,7 @@ public class GestioTemporada extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
 
         if (selectedRow != -1){
-            System.out.println("Int: "+selectedRow+ " T: "+ temporades.get(selectedRow).toString());
+            
 
             try {
                 gbd.eliminarTemporada(temporades.get(selectedRow).getTemporada());
@@ -216,7 +216,7 @@ public class GestioTemporada extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
         Temporada editarTemporada = null;
         if (selectedRow != -1){
-            System.out.println("Int: "+selectedRow+ " E: "+ temporades.get(selectedRow).toString());
+            
 
             EditarTemporada temp = new EditarTemporada(temporades.get(selectedRow));
             temp.setVisible(true);
@@ -226,7 +226,7 @@ public class GestioTemporada extends javax.swing.JFrame {
 
     private void botobuscarTemporadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botobuscarTemporadaActionPerformed
         // TODO add your handling code here:
-        System.out.println(fieldbuscarTemporada.getText());
+        
 
         try {
             temporades = gbd.trobarTemporadaperCamp(fieldbuscarTemporada.getText());
@@ -235,7 +235,7 @@ public class GestioTemporada extends javax.swing.JFrame {
         }
 
         if (temporades == null || temporades.isEmpty()) {
-            System.out.println("No se encontraron equipos.");
+            
         } else {
             omplirTaula();
         }

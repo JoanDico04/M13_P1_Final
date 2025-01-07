@@ -131,7 +131,7 @@ public class EditarEquip extends javax.swing.JFrame {
                 nomField.getText(),
                 tipusField.getText()
         );
-        System.out.println("Equip guardat"+geq);
+       
         try {
             gbd.editarEquip(geq);
             gbd.confirmarCanvis();

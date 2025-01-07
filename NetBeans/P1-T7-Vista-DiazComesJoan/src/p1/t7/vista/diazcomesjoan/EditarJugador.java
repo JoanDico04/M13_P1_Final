@@ -221,7 +221,7 @@ public class EditarJugador extends javax.swing.JFrame {
             adreçaField.getText());
             
         
-            System.out.println("Jugador guardar"+gju);
+          
             
             try {
                 gbd.editarJugador(gju);

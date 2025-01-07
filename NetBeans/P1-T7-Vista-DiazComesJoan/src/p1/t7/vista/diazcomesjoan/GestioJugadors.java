@@ -27,7 +27,7 @@ public class GestioJugadors extends javax.swing.JFrame {
         jugadors = gbd.trobarJugador();
         
         if (jugadors == null || jugadors.isEmpty()) {
-            System.out.println("No se encontraron jugadores.");
+          
         } else {
             omplirTaula();
         }
@@ -213,7 +213,7 @@ public class GestioJugadors extends javax.swing.JFrame {
 
     private void botobuscarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botobuscarJugadorActionPerformed
         // TODO add your handling code here:
-        System.out.println(fieldbuscarJugador.getText());
+        
         
         
         try {
@@ -223,7 +223,7 @@ public class GestioJugadors extends javax.swing.JFrame {
         }
         
         if (jugadors == null || jugadors.isEmpty()) {
-            System.out.println("No se encontraron jugadores.");
+            
         } else {
             omplirTaula();
         }
@@ -234,7 +234,7 @@ public class GestioJugadors extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
          Jugador editarJugador = null;
             if (selectedRow != -1){
-                System.out.println("Int: "+selectedRow+ " J: "+ jugadors.get(selectedRow).toString());
+            
       
                 EditarJugador ej = new EditarJugador(jugadors.get(selectedRow));
                 ej.setVisible(true);
@@ -248,7 +248,7 @@ public class GestioJugadors extends javax.swing.JFrame {
 //        }
 //        
 //        if (editarJugadors == null || editarJugadors.isEmpty()) {
-//            System.out.println("No se puede editar el jugador");
+//           
 //        } else {
 //            omplirTaula(editarJugadors);
 //        }
@@ -259,7 +259,7 @@ public class GestioJugadors extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
          
             if (selectedRow != -1){
-                System.out.println("Int: "+selectedRow+ " J: "+ jugadors.get(selectedRow).toString());
+               
       
             try {
                 gbd.eliminarJugador(jugadors.get(selectedRow).getJugadorId());

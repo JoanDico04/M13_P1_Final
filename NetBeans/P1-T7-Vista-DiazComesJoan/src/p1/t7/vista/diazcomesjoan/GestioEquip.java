@@ -30,7 +30,7 @@ public class GestioEquip extends javax.swing.JFrame {
         equips = gbd.trobarEquip();
         
         if (equips == null || equips.isEmpty()) {
-            System.out.println("No se encontraron equipos.");
+            
         } else {
             omplirTaula();
         }
@@ -197,7 +197,7 @@ public class GestioEquip extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
 
         if (selectedRow != -1){
-            System.out.println("Int: "+selectedRow+ " E: "+ equips.get(selectedRow).toString());
+            
 
            
             try {
@@ -222,7 +222,7 @@ public class GestioEquip extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
         Equip editarEquip = null;
         if (selectedRow != -1){
-            System.out.println("Int: "+selectedRow+ " E: "+ equips.get(selectedRow).toString());
+            
 
             EditarEquip eq = new EditarEquip(equips.get(selectedRow));
             eq.setVisible(true);
@@ -233,7 +233,7 @@ public class GestioEquip extends javax.swing.JFrame {
 
     private void botobuscarEquipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botobuscarEquipActionPerformed
         // TODO add your handling code here:
-        System.out.println(fieldbuscarEquip.getText());
+       
 
         try {
             equips = gbd.trobarEquipPerCamp(fieldbuscarEquip.getText());
@@ -242,7 +242,7 @@ public class GestioEquip extends javax.swing.JFrame {
         }
 
         if (equips == null || equips.isEmpty()) {
-            System.out.println("No se encontraron equipos.");
+            
         } else {
             omplirTaula();
         }

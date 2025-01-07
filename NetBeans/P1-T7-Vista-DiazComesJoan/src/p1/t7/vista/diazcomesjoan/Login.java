@@ -100,31 +100,33 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          try {
+             Usuari usu = gbd.ferLogin(loginField.getText());
+             
+             
+        
+        
      
-        Usuari usu = gbd.ferLogin(loginField.getText());
-        
-     
-        if (usu == null) {
-            JOptionPane.showMessageDialog(this, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            if (usu == null) {
+                JOptionPane.showMessageDialog(this, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+
+            String pass = passwField.getText();
+            if (pass.equals(usu.getUsuariPassw())) {
+
+                GestioJugadors gj = new GestioJugadors();
+                gj.setVisible(true);
+                dispose();
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (GestorBDException ex) {
+
+            JOptionPane.showMessageDialog(this, "Error al iniciar sesión: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
-        
-        
-        String pass = passwField.getText();
-        if (pass.equals(usu.getUsuariPassw())) {
-            
-            GestioJugadors gj = new GestioJugadors();
-            gj.setVisible(true);
-            dispose();
-        } else {
-           
-            JOptionPane.showMessageDialog(this, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    } catch (GestorBDException ex) {
-       
-        JOptionPane.showMessageDialog(this, "Error al iniciar sesión: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        ex.printStackTrace();
-    }
 
              
     }//GEN-LAST:event_jButton1ActionPerformed
